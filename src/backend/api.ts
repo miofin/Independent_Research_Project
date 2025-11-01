@@ -6,6 +6,8 @@ import { db } from './db'
 import { serve } from '@hono/node-server'
 import { serveStatic } from '@hono/node-server/serve-static'
 
+import { seed } from './seed.js'
+
 const PORT = process.env.PORT || 3000
 const api = new Hono()
 
@@ -67,7 +69,7 @@ api.get('/products', async (c) => {
         .offset(offset)
 
     const totalPages = Math.ceil(totalSearchResultsCount / itemsPerPage)
-
+    
     return c.json({ products: searchResults, totalPages, currentPage: page })
 })
 

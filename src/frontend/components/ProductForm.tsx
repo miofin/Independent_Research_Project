@@ -6,7 +6,11 @@ import '../public/ProductForm.css'
 // Implement the ProductFormProps interface.
 // Note that mode can be either "add" or "delete".
 // onProductAdded and onProductDeleted may or may not be necessarily passed to the component.
-interface ProductFormProps {}
+interface ProductFormProps {
+    mode: string,
+    onProductAdded: void,
+    onProductDeleted: void
+}
 
 const ProductForm: React.FC<ProductFormProps> = ({
     mode,

@@ -2,7 +2,11 @@ import React from 'react'
 import '../public/Search.css'
 
 //TODO Implement the SearchProps interface.
-interface SearchProps {}
+interface SearchProps {
+    query: string,
+    setQuery: void,
+    setCurrentPage: void
+}
 
 //TODO Make sure that the component works properly.
 // Every time the user types in the input field, the first page of the results should be displayed.

@@ -1,9 +1,12 @@
 import type { Product } from '../types'
 
+
 const baseUrl = '/api/products'
 
 export const fetchProducts = async (query = '', page = 1) => {
     // TODO Fetch the products from the API
+    const response = await fetch(`${baseUrl}?query=${query}&page=${page}`)
+    
     if (!response.ok) {
         throw new Error('Failed to fetch products')
     }
