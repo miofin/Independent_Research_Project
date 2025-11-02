@@ -85,17 +85,17 @@ function App() {
             When adding a product, you should set the status message to
             "Product added successfully", set the variable showForm back to
             "none" and navigate to the first page of the product list */}
-            {showForm === 'add' && <ProductForm />}
+            {showForm === 'add' && <ProductForm mode={showForm} setMode={setShowForm} status={status} setStatus={setStatus} />}
             {/* TODO Add the necessary props to the underlying component.
             When removing a product, tou should set the status message to
             "Product deleted successfully" and set the variable showForm back to
             "none" and navigate to the first page of the product list */}
-            {showForm === 'delete' && <ProductForm />}
+            {showForm === 'delete' && <ProductForm mode={showForm} setMode={setShowForm} status={status} setStatus={setStatus} />}
             {showForm === 'none' && (
                 <>
                     {' '}
-                    {/* TODO Add the necessary props to the underlying components. */}
-                    <Search />
+                    {/* TODO (done) Add the necessary props to the underlying components. */}
+                    <Search query={query} setQuery={setQuery} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
                     <ProductList products={products} currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage}/>
                 </>
             )}

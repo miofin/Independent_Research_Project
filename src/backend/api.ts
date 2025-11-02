@@ -6,8 +6,6 @@ import { db } from './db'
 import { serve } from '@hono/node-server'
 import { serveStatic } from '@hono/node-server/serve-static'
 
-import { seed } from './seed.js'
-
 const PORT = process.env.PORT || 3000
 const api = new Hono()
 

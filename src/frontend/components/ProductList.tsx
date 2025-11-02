@@ -20,7 +20,7 @@ const ProductList: React.FC<ProductListProps> = ({
 }) => {
     const renderPaginationLinks = () => {
         const links = []
-        // TODO
+        // TODO (done)
         // Here you should populate the "links" array with JSX elements for each page number.
         // Each link is an <a> element with the page number as the text content.
         // The current page should have the class "active".
@@ -54,7 +54,7 @@ const ProductList: React.FC<ProductListProps> = ({
             ) : (
                 <div className="product-grid">
                     {
-                        /* TODO Generate a ProductCard component for each product in the products array. */
+                        /* TODO (done) Generate a ProductCard component for each product in the products array. */
                         products.map((p: Product) => 
                             <ProductCard product={p}/>
                         )

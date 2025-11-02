@@ -1,25 +1,38 @@
-import React from 'react'
+import React, { useState} from 'react'
 import '../public/Search.css'
 
-//TODO Implement the SearchProps interface.
+//TODO (done) Implement the SearchProps interface.
 interface SearchProps {
     query: string,
     setQuery: void,
+    currentPage: number,
     setCurrentPage: void
 }
 
-//TODO Make sure that the component works properly.
+//TODO (done) Make sure that the component works properly.
 // Every time the user types in the input field, the first page of the results should be displayed.
-const Search: React.FC<SearchProps> = ({ query, setQuery, setCurrentPage }) => {
+const Search: React.FC<SearchProps> = ({
+    query,
+    setQuery,
+    currentPage,
+    setCurrentPage,
+}) => {
+    const [temp, setTemp] = useState('');
+
     return (
         <div className="search-container">
-            <form className="search-form" role="search">
+            <form className="search-form" role="search" onSubmit={(e)=>{
+                e.preventDefault();
+                setQuery(temp);
+                setCurrentPage(1);
+            }}>
                 <h2 className="search-form-title">Search Products</h2>
                 <div className="search-form-group">
                     <input
                         type="text"
                         id="search-query"
-                        value={query}
+                        value={temp}
+                        onChange={(e)=>setTemp(e.target.value)}
                         placeholder="Enter product name..."
                         required
                     />

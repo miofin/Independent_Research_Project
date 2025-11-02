@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { addProduct, deleteProduct } from './api'
 import '../public/ProductForm.css'
+import type { Product } from '../types'
+
 
 // TODO
 // Implement the ProductFormProps interface.
@@ -8,12 +10,18 @@ import '../public/ProductForm.css'
 // onProductAdded and onProductDeleted may or may not be necessarily passed to the component.
 interface ProductFormProps {
     mode: string,
-    onProductAdded: void,
-    onProductDeleted: void
+    setMode: void,
+    status: string,
+    setStatus: void,
+    onProductAdded?: void,
+    onProductDeleted?: void
 }
 
 const ProductForm: React.FC<ProductFormProps> = ({
     mode,
+    setMode,
+    status,
+    setStatus,
     onProductAdded,
     onProductDeleted,
 }) => {
@@ -28,10 +36,21 @@ const ProductForm: React.FC<ProductFormProps> = ({
                 // TODO
                 // Call the correct function from the api module (located in components/api.ts) to add a product
                 // and reset the state of the component. The view should go back to the list of products.
+                const newProduct: Omit<Product, 'id'> = {
+                    name: name,
+                    image_url: imageUrl,
+                    deleted: false
+                };
+                addProduct(newProduct);
+                setStatus('Product added successfully')
+                setMode('none');
             } else {
-                // TODO
+                // TODO (done)
                 // Call the correct function from the api module (located in components/api.ts) to delete a product
                 // and reset the state of the component. The view should go back to the list of products.
+                deleteProduct(productId);
+                setStatus('Product deleted successfully');
+                setMode('none');
             }
         } catch (error) {
             console.error(
@@ -44,8 +63,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
     return (
         <div className="product-form-container">
             <h2 className="product-form-title">
-                {/* TODO Set the correct title based on whether the component is for adding or deleting products.
+                {/* TODO (done) Set the correct title based on whether the component is for adding or deleting products.
           The titles should be "Add New Product" and "Delete Product" respectively. */}
+                {mode==="add" ? 'Add New Product' : 'Delete Product'}
             </h2>
             <form onSubmit={handleSubmit} className="product-form">
                 {mode === 'add' ? (
@@ -56,6 +76,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                 type="text"
                                 id="name"
                                 value={name}
+                                onChange={(e)=>setName(e.target.value)}
                                 placeholder="Enter product name..."
                                 required
                             />
@@ -66,6 +87,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                                 type="url"
                                 id="imageUrl"
                                 value={imageUrl}
+                                onChange={(e)=>setImageUrl(e.target.value)}
                                 placeholder="Enter image URL..."
                             />
                         </div>
@@ -77,6 +99,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                             type="text"
                             id="productId"
                             value={productId}
+                            onChange={(e)=>setProductId(Number(e.target.value))}
                             placeholder="Enter product ID..."
                             required
                         />
