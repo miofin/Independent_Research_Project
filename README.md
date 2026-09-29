@@ -13,11 +13,6 @@ academic integrity policy in this course.
 
 Open the terminal window and type in `npm install`. This will install all the dependencies listed in the `package.json` file (note that there are `package.json` files also inside `/frontent` and `/backend`. It isn't necessary to run `npm install` more than once) and will create a folder `node_modules` where all these dependencies will be installed. `npm run start` will run a local development server and open a web browser window for you that's pointed at your application.
 
-## Skeleton code
-
-The skeleton code of the application is designed to give you a better understanding on React and its features. The given project is 70% done, requiring some functionalities to be implemented. You just need to add the logic as described in the TODOs. There may be a few TODOs missing, but they're easily detectable when debugging.
-Don't worry about anything inside the backend folder, nothing is missing there.
-
 ## Starting the project and navigating
 
 Before running the project please make sure that you have installed all the dependencies mentioned in the step `Installing required packages`. Start the project by typing `npm run dev` in the terminal and open the URL in a browser.
